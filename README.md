@@ -17,10 +17,11 @@ This GitHub repository will have 2 branches:
 
 Prerequisites for running this web application(PicChat):
 1. Install pipenv if you don't have it: 'pip install pipenv'
-1. Navigate through your terminal to the directory where this application's Pipfile
+2. Navigate through your terminal to the directory where this application's Pipfile
    is located and run the command 'pipenv install' to install all the requires
    packages and dependencies.
-2. Install docker: https://www.docker.com/get-started
+3. Install docker: https://www.docker.com/get-started
+4. Run ```docker run -p 6379:6379 -d redis:5```
 
 If you want to run PicChat's chat server:
 1. Navigate through your terminal to the directory where PicChat's manage.py file
