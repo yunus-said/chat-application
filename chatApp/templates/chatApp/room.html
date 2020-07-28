@@ -4,11 +4,69 @@
 <head>
     <meta charset="utf-8"/>
     <title>Chat Room</title>
+
+    <style>
+
+      body {
+        background-color: #D2ACF7;
+      }
+
+      #head {
+        width: 101.1%;
+        height: 125px;
+        background-color: white;
+        color: #8015E8;
+        text-align: center;
+        font-family: Brush Script MT, Brush Script Std, cursive;
+        font-size: 100px;
+        position: relative;
+        right: 7px;
+        bottom: 70px;
+      }
+
+      #chat-log {
+        width: 95%;
+        height: 60%;
+        position: absolute;
+        top: 20%;
+        left: 2%;
+        border: 2px solid black;
+        border-radius: 15px;
+        font-size: 150%;
+      }
+
+      #chat-message-input {
+        width: 84%;
+        height: 4.5%;
+        position: absolute;
+        left: 2%;
+        bottom: 10%;
+        font-size: 100%;
+        text-indent: 2%;
+      }
+
+      #chat-message-submit {
+        width: 10%;
+        height: 5%;
+        position: absolute;
+        right: 3%;
+        bottom: 10%;
+        color: white;
+        background-color: #83168C;
+        border: none;
+        font-weight: bold;
+        font-size: 125%;
+        font-family: Avenir;
+      }
+
+    </style>
+
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
+    <h1 id="head">PicChat</h1>
+    <textarea id="chat-log"></textarea><br>
+    <input id="chat-message-input" type="text" placeholder="Write your message..."><br>
+    <input id="chat-message-submit" type="button" value="Send!">
     {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);

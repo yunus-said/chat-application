@@ -16,18 +16,18 @@ This GitHub repository will have 2 branches:
 2. Synchronous branch = synchronous version of PicChat
 
 Prerequisites for running this web application(PicChat):
-1. Install pipenv if you don't have it: 'pip install pipenv'
+1. Install pipenv if you don't have it: `pip install pipenv`
 2. Navigate through your terminal to the directory where this application's Pipfile
-   is located and run the command 'pipenv install' to install all the requires
+   is located and run the command `pipenv install` to install all the requires
    packages and dependencies.
 3. Install docker: https://www.docker.com/get-started
-4. Run ```docker run -p 6379:6379 -d redis:5```
+4. Run `docker run -p 6379:6379 -d redis:5`
 
 If you want to run PicChat's chat server:
 1. Navigate through your terminal to the directory where PicChat's manage.py file
    and Pipfile are located. (manage.py and Pipfile will be in the same dorectory)
-2. Run the command 'pipenv shell' to activate a python virtual environment
-3. Run the command 'python manage.py runserver'
+2. Run the command `pipenv shell` to activate a python virtual environment
+3. Run the command `python manage.py runserver`
 
 While the chat server is running, if you want to use or test the chat application:
 1. Open two or more browser tabs to the url: http://127.0.0.1:8000/chat/
