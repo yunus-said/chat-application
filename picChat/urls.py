@@ -15,11 +15,10 @@ Including another URLconf
 """
 
 # picChat/urls.py
-from django.conf.urls import include
-from django.urls import path
 from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('chat/', include('chatApp.urls')),
     path('admin/', admin.site.urls),
+    path('chat/', include('chatApp.urls', namespace='chat')),
 ]
