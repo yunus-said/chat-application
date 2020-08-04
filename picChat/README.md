@@ -36,3 +36,20 @@ While the chat server is running, if you want to use or test the chat applicatio
 
 For further reference about this web application you can look at a Django channels
 tutorial at: https://channels.readthedocs.io/en/latest/tutorial/index.html
+
+`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+To run PicChat with a react front end:
+1. Navigate through your terminal to get inside the frontend directory.
+2. Install either npm or yarn JavaScript package managers from:
+    npm (recommended): https://nodejs.org/en/download/
+    yarn: https://yarnpkg.com/getting-started/install
+3. Install parcel from: https://parceljs.org/getting_started.html or run one of
+   these commands for either npm or yarn:
+    npm (recommended): `npm install -g parcel-bundler`
+    yarn: `yarn global add parcel-bundler`
+4. Create a package.json file in your project directory using:
+    npm (recommended): `npm init -y`
+    yarn: `yarn init -y`
+5. Run the command `npm install --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-react`
+6. Run the command `npm install --save react react-dom`
+7. Run the command `npm start` (8:48)
