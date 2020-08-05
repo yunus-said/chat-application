@@ -1,0 +1,9 @@
+# Django Ignores#
+*.log
+*.pot
+*.pyc
+__pycache__
+/chatApp/__pycache__
+/picChat/__pycache__
+db.sqlite3
+media
