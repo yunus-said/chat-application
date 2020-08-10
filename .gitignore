@@ -2,8 +2,10 @@
 *.log
 *.pot
 *.pyc
+**/*.pyc
 __pycache__
 picChat/chatApp/__pycache__
+picChat/chatApp/migrations
 picChat/picChat/__pycache__
 picChat/db.sqlite3
 media
