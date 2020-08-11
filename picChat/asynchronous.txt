@@ -1,2 +1,0 @@
-This is a dummy txt file that exists just for the purpose of denoting that this
-version of PicChat is the Asynchronous version.

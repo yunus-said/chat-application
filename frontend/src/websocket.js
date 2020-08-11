@@ -53,21 +53,21 @@ class WebSocketService {
   }
 
   newChatMessage(message) {
-    this.sendMessage({ command: 'new_message', from: message.from, message: message.content });
+    this.sendMessage({ command: 'new_message', from: message.from, message: message.content }); 
   }
 
   addCallbacks(messagesCallback, newMessageCallback) {
     this.callbacks['messages'] = messagesCallback;
     this.callbacks['new_message'] = newMessageCallback;
   }
-
+  
   sendMessage(data) {
     try {
       this.socketRef.send(JSON.stringify({ ...data }));
     }
     catch(err) {
       console.log(err.message);
-    }
+    }  
   }
 
   state() {
