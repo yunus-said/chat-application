@@ -29,7 +29,7 @@ class App extends React.Component {
         );
     };
 }
-
+  
 const mapDispatchToProps = dispatch => {
     return {
         onTryAutoSignup: () => dispatch(actions.authCheckState())

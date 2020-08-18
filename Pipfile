@@ -48,6 +48,9 @@ Django = "*"
 Automat = "*"
 PyHamcrest = "*"
 Twisted = "*"
+gunicorn = "*"
+sqlparse = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
