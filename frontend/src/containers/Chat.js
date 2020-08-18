@@ -5,16 +5,25 @@ import Hoc from '../hoc/hoc';
 
 
 class Chat extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {message: ''}
-    
+
+	state = { message: '' }
+
+	initialiseChat() {
         this.waitForSocketConnection(() => {
           WebSocketInstance.addCallbacks(this.setMessages.bind(this), this.addMessage.bind(this))
-          WebSocketInstance.fetchMessages(this.props.username);
+          WebSocketInstance.fetchMessages(
+            this.props.username,
+            this.props.match.params.chatID
+          );
         });
-    }
-    
+		WebSocketInstance.connect(this.props.match.params.chatID);
+	}
+
+    constructor(props) {
+        super(props);
+		this.initialiseChat();
+	}
+
     waitForSocketConnection(callback) {
         const component = this;
         setTimeout(
@@ -29,21 +38,19 @@ class Chat extends React.Component {
             }
         }, 100);
     }
-    
+
     addMessage(message) {
         this.setState({ messages: [...this.state.messages, message] });
     }
-    
+
     setMessages(messages) {
         this.setState({ messages: messages.reverse()});
     }
-    
+
     messageChangeHandler = (event) =>  {
-        this.setState({
-            message: event.target.value
-        })
+        this.setState({ message: event.target.value });
     }
-    
+
     sendMessageHandler = (e) => {
         e.preventDefault();
         const messageObject = {
@@ -51,13 +58,11 @@ class Chat extends React.Component {
             content: this.state.message,
         };
         WebSocketInstance.newChatMessage(messageObject);
-        this.setState({
-            message: ''
-        });
+        this.setState({ message: '' });
     }
 
     renderTimestamp = timestamp => {
-        let prefix = ''; 
+        let prefix = '';
         const timeDiff = Math.round((new Date().getTime() - new Date(timestamp).getTime())/60000);
         if (timeDiff < 1) { // less than one minute ago
             prefix = 'just now...';
@@ -72,12 +77,12 @@ class Chat extends React.Component {
         }
         return prefix
     }
-    
+
     renderMessages = (messages) => {
         const currentUser = this.props.username;
         return messages.map((message, i, arr) => (
-            <li 
-                key={message.id} 
+            <li
+                key={message.id}
                 style={{marginBottom: arr.length - 1 === i ? '300px' : '15px'}}
                 className={message.author === currentUser ? 'sent' : 'replies'}>
                 <img src="http://emilcarlsson.se/assets/mikeross.png" />
@@ -103,31 +108,34 @@ class Chat extends React.Component {
         this.scrollToBottom();
     }
 
+    componentWillReceiveProps(newProps) {
+		this.initialiseChat();
+    }
+
     render() {
         const messages = this.state.messages;
         return (
             <Hoc>
                 <div className="messages">
                     <ul id="chat-log">
-                    { 
-                        messages && 
-                        this.renderMessages(messages) 
+                    {
+                        messages &&
+                        this.renderMessages(messages)
                     }
                     <div style={{ float:"left", clear: "both" }}
                         ref={(el) => { this.messagesEnd = el; }}>
                     </div>
                     </ul>
-                    
                 </div>
                 <div className="message-input">
                     <form onSubmit={this.sendMessageHandler}>
                         <div className="wrap">
-                            <input 
+                            <input
                                 onChange={this.messageChangeHandler}
                                 value={this.state.message}
-                                required 
-                                id="chat-message-input" 
-                                type="text" 
+                                required
+                                id="chat-message-input"
+                                type="text"
                                 placeholder="Write your message..." />
                             <i className="fa fa-paperclip attachment" aria-hidden="true"></i>
                             <button id="chat-message-submit" className="submit">
@@ -146,5 +154,5 @@ const mapStateToProps = state => {
         username: state.username
     }
 }
-  
+
 export default connect(mapStateToProps)(Chat);

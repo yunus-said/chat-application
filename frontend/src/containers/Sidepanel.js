@@ -10,7 +10,7 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
 class Sidepanel extends React.Component {
 
-    state = { 
+    state = {
         chats: [],
         loginForm: true,
     }
@@ -21,19 +21,19 @@ class Sidepanel extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.token !== null && this.props.username !== null) {
+            this.getUserChats(this.props.token, this.props.username);
+        }
+    }
+
     getUserChats = (token, username) => {
         axios.defaults.headers = {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`
         };
-
         axios.get(`http://127.0.0.1:8000/chat/?username=${username}`)
-        .then(res => {
-            console.log(res.data);
-            this.setState({
-                chats: res.data
-            });
-        });
+        .then(res => this.setState({ chats: res.data }));
     }
 
     changeForm = () => {
@@ -44,14 +44,14 @@ class Sidepanel extends React.Component {
         e.preventDefault();
         if (this.state.loginForm) {
             this.props.login(
-                e.target.username.value, 
+                e.target.username.value,
                 e.target.password.value
             );
         } else {
             this.props.signup(
-                e.target.username.value, 
-                e.target.email.value, 
-                e.target.password.value, 
+                e.target.username.value,
+                e.target.email.value,
+                e.target.password.value,
                 e.target.password2.value
             );
         }
@@ -60,9 +60,9 @@ class Sidepanel extends React.Component {
     render() {
         const activeChats = this.state.chats.map(c => {
             return (
-                <Contact 
+                <Contact
                     key={c.id}
-                    name="Harvey Specter" 
+                    name="Harvey Specter"
                     picURL="http://emilcarlsson.se/assets/louislitt.png"
                     status="busy"
                     chatURL={`/${c.id}`} />
@@ -89,15 +89,15 @@ class Sidepanel extends React.Component {
 
                         <Spin indicator={antIcon} /> :
 
-                        this.props.isAuthenticated ? 
-                    
+                        this.props.isAuthenticated ?
+
                         <button onClick={() => this.props.logout()} className="authBtn"><span>Logout</span></button>
-                        
+
                         :
-                        
+
                         <div>
                             <form method="POST" onSubmit={this.authenticate}>
-                                
+
                                 {
                                     this.state.loginForm ?
 
@@ -115,7 +115,7 @@ class Sidepanel extends React.Component {
                                         <input name="password2" type="password" placeholder="password confirm" />
                                     </div>
                                 }
-                                
+
                                 <button type="submit">Authenticate</button>
 
                             </form>
@@ -133,13 +133,13 @@ class Sidepanel extends React.Component {
             <div id="contacts">
                 <ul>
                     {activeChats}
-                    {/* <Contact 
-                        name="Louis Litt" 
+                    {/* <Contact
+                        name="Louis Litt"
                         picURL="http://emilcarlsson.se/assets/harveyspecter.png"
                         status="online"
                         chatURL="/louis" /> */}
-                    {/* <Contact 
-                        name="Harvey Specter" 
+                    {/* <Contact
+                        name="Harvey Specter"
                         picURL="http://emilcarlsson.se/assets/louislitt.png"
                         status="busy"
                         chatURL="/harvey" /> */}
