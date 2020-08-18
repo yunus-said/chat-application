@@ -7,6 +7,7 @@ from .views import get_last_10_messages, get_user_contact, get_current_chat
 
 User = get_user_model()
 
+
 class ChatConsumer(WebsocketConsumer):
 
     def fetch_messages(self, data):
@@ -68,7 +69,6 @@ class ChatConsumer(WebsocketConsumer):
     def receive(self, text_data):
         data = json.loads(text_data)
         self.commands[data['command']](self, data)
-
 
     def send_chat_message(self, message):
         async_to_sync(self.channel_layer.group_send)(
