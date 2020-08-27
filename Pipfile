@@ -51,6 +51,7 @@ Twisted = "*"
 gunicorn = "*"
 sqlparse = "*"
 whitenoise = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"

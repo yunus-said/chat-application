@@ -12,9 +12,29 @@ class ContactSerializer(serializers.StringRelatedField):
 class ChatSerializer(serializers.ModelSerializer):
     participants = ContactSerializer(many=True)
 
+    # print('participants: ', participants)
+    # indicator = serializers.SerializerMethodField()
+    # otherParticipants = []
+    #
+    # peer = None
+    # for participant in participants:
+    #     if participants[i] != this.props.username:
+    #       # otherParticipants.append(c.participants[i])
+    #       peer = participants[i]
+    #       break
+    #
+    # def get_indicator(self, instance):
+    #     TODO Return if the peer user is currently connected by checking the difference between connections and disconnections
+    #     remainder = peer.connectionCount % 2
+    #     if remainder is 0:
+    #         return 'offline'
+    #     else:
+    #         return 'online'
+
     class Meta:
         model = Chat
         fields = ('id', 'messages', 'participants')
+        # fields = ('id', 'messages', 'participants', 'indicator')
         read_only = ('id')
 
     def create(self, validated_data):

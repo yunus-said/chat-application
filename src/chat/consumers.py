@@ -52,6 +52,12 @@ class ChatConsumer(WebsocketConsumer):
     }
 
     def connect(self):
+        # print('Connected: ', self.scope['user'].username)
+        # TODO Update the connections field
+        # user_in_database = User.objects.filter(id=self.scope['user'].id).first()
+        # user_in_database.connectionCount = user_in_database.connectionCount + 1
+        # user_in_database.save()
+
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
         async_to_sync(self.channel_layer.group_add)(
@@ -61,6 +67,12 @@ class ChatConsumer(WebsocketConsumer):
         self.accept()
 
     def disconnect(self, close_code):
+        # print('Disconnected: ', self.scope['user'].username)
+        # TODO Update the diconnections field
+        # user_in_database = User.objects.filter(id=self.scope['user'].id).first()
+        # user_in_database.connectionCount = user_in_database.connectionCount + 1
+        # user_in_database.save()
+
         async_to_sync(self.channel_layer.group_discard)(
             self.room_group_name,
             self.channel_name
