@@ -8,6 +8,7 @@ class Profile extends React.Component {
     if (this.props.token === null) {
       return <Redirect to="/" />;
     }
+    console.log('The image',this.props.image);
     return (
       <div className="contact-profile">
         {this.props.username !== null ? (
@@ -29,6 +30,7 @@ class Profile extends React.Component {
 const mapStateToProps = state => {
   return {
     username: state.auth.username,
+    image: state.auth.image,
     token: state.auth.token
   };
 };
