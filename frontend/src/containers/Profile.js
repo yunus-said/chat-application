@@ -13,7 +13,7 @@ class Profile extends React.Component {
       <div className="contact-profile">
         {this.props.username !== null ? (
           <Hoc>
-            <img src="admin.jpg" />
+            <img src={require('./admin.jpg')} />
             <p>{this.props.username}</p>
             <div className="social-media">
               <i className="fa fa-facebook" aria-hidden="true" />
