@@ -8,12 +8,12 @@ class Profile extends React.Component {
     if (this.props.token === null) {
       return <Redirect to="/" />;
     }
-    console.log('The image',this.props.image);
+    console.log('The image', this.props.image);
     return (
       <div className="contact-profile">
         {this.props.username !== null ? (
           <Hoc>
-            <img src="{{ user.contact.image.url }}" alt="" />
+            <img src="admin.jpg" />
             <p>{this.props.username}</p>
             <div className="social-media">
               <i className="fa fa-facebook" aria-hidden="true" />
